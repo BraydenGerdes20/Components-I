@@ -10,6 +10,28 @@ let menuItems = [
   'Log Out'
 ];
 
+function menuMaker(linkArray){
+  const wrapper = document.createElement("div");
+  const list = document.createElement("ul");
+  
+  wrapper.appendChild(list);
+  wrapper.classList.add("menu");
+
+  linkArray.forEach(textLink => {
+    const link = document.createElement("li");
+    link.textContent = textLink;
+    list.appendChild(link);
+    
+  });
+
+  const sideMenu = document.querySelector('.menu-button'); 
+  sideMenu.addEventListener("click", () =>{
+    wrapper.classList.toggle("menu--open")
+  })
+
+  return wrapper;
+}
+document.querySelector(".header").appendChild(menuMaker(menuItems));
 /*
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
 

@@ -87,9 +87,58 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'I HAVE NO IDEA WHAT IM DOING',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH...
+          AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH, AH! `,
+
+    secondParagraph: `AHHHHHHHHHHHHHHHHHHHHHHHHHHHH AHAHHAH HAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH! AH hahahahahHAHHHHHHHHH
+          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!!`,
+
+    thirdParagraph: `ahhhhhhhhhhhhhhhhhhhhhhhhhh HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AHHAHAHAHAA AAAAA
+          AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH...
+    
+          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!`
   }
 ];
+function articleMaker(articleArr){
+  const wrapper = document.createElement("div");
+  const artTitle = document.createElement("h2");
+  const artDate = document.createElement("p");
+  const paragraphOne = document.createElement("p");
+  const paragraphTwo = document.createElement("p");
+  const paragraphThree = document.createElement("p");
+  const moreButton = document.createElement('span')
 
+  wrapper.classList.add('article');
+  artDate.classList.add('date');
+  moreButton.classList.add('expandButton');
+
+  artTitle.textContent = articleArr.title;
+  artDate.textContent = articleArr.date;
+  paragraphOne.textContent = articleArr.firstParagraph;
+  paragraphTwo.textContent = articleArr.secondParagraph;
+  paragraphThree.textContent = articleArr.thirdParagraph;
+  moreButton.textContent = '🔽';
+
+
+  wrapper.appendChild(artTitle);
+  wrapper.appendChild(artDate);
+  wrapper.appendChild(paragraphOne);
+  wrapper.appendChild(paragraphTwo);
+  wrapper.appendChild(paragraphThree);
+  wrapper.appendChild(moreButton)
+
+  moreButton.addEventListener("click",() =>{
+    wrapper.classList.toggle("article-open");
+  })
+  return wrapper;
+}
+ data.forEach(atricle =>{
+  document.querySelector("div.articles").appendChild(articleMaker(atricle));
+})
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
